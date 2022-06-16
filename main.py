@@ -5,10 +5,14 @@ from datetime import datetime
 
 app = FastAPI()
 
-@app.get("/") # decoratore creato da fastAPI, indica che dalla rotta '/' deve partire la funzione 'app'
-def index():
+@app.get('/')
+def root():
+    return {'Hello': 'Friend'}
+
+@app.get("/amici/{number}") # @app.get... -> decoratore creato da fastAPI, indica che dalla rotta '/' deve partire la funzione 'app'
+def friends(number):
     output = {}
-    for i in range(10):
+    for i in range(int(number)):
         output[i] = f"Ciao amico numero {i}"
 
     return output
